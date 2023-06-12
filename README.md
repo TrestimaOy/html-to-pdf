@@ -1,14 +1,15 @@
 # HTML TO PDF Converter Microservice
 
-This microservice will convert HTML to PDF. The conversion will be done with [wkhtmltopdf](https://wkhtmltopdf.org/)
+Docker container to convert HTML to PDF. The conversion will be done with [wkhtmltopdf](https://wkhtmltopdf.org/)
 
 ## Prerequisites
 
-1. docker
+1. Docker
 
 ## Getting Started
 
-    $ make
+    $ docker build --no-cache -t html-to-pdf .
+    $ docker run --init -p 8080:8080 -ti -e MAX_BODY_SIZE_MB=128 html-to-pdf
 
 ## Example Request
 

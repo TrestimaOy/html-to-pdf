@@ -1,10 +1,13 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var wkhtmltopdf = require('wkhtmltopdf');
+const express = require('express');
+const bodyParser = require('body-parser');
+const wkhtmltopdf = require('wkhtmltopdf');
 
-var app = express();
+const app = express();
 
-app.use(bodyParser.json( { limit: '10mb' }));
+const MAX_BODY_SIZE_MB = process.env.MAX_BODY_SIZE_MB || 128;
+console.log(`Setting maximum body size to: ${MAX_BODY_SIZE_MB}MB`);
+
+app.use(bodyParser.json( { limit: `${MAX_BODY_SIZE_MB}mb` }));
 
 app.post('/', (req, res) => {
   res.setHeader('content-type', 'application/pdf');
